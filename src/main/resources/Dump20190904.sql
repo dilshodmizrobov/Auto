@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: 192.168.0.2    Database: autodb
+-- Host: localhost    Database: autodb
 -- ------------------------------------------------------
--- Server version	5.7.14
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `carcases` (
 -- Dumping data for table `carcases`
 --
 
---LOCK TABLES `carcases` WRITE;
+LOCK TABLES `carcases` WRITE;
 /*!40000 ALTER TABLE `carcases` DISABLE KEYS */;
 INSERT INTO `carcases` VALUES (1,'Седан'),(2,'Купе'),(3,'Лимузин'),(4,'Хэтчбек'),(5,'Универсал'),(6,'Кабриолет'),(7,'Минивэн'),(8,'Пикап'),(9,'Внедорожник'),(10,'Кроссовер');
 /*!40000 ALTER TABLE `carcases` ENABLE KEYS */;
@@ -68,25 +68,7 @@ CREATE TABLE `cars` (
   `WHEEL_DIAMETER` int(11) DEFAULT NULL,
   `CONDITION` varchar(45) DEFAULT NULL,
   `date_add` datetime DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `car_fk_mark_idx` (`MARK_ID`),
-  KEY `car_fk_model_idx` (`MODEL_ID`),
-  KEY `car_fk_generation_idx` (`GENERATION_ID`),
-  KEY `FKst5wx1ahrn6fuvmypf09cjcfi` (`CARCASE_ID`),
-  KEY `FK4mv4ncm53ja4qtqmfqspxv7l` (`COLOR_ID`),
-  KEY `FKtrjh2q83c5gmf4kgphpvfwpph` (`DRIVE_UNIT_ID`),
-  KEY `FKsken61sdlwxjdxbnr39d81ysu` (`ENGINE_CAPACITY_ID`),
-  KEY `FKsl0wrmmbnt8rd0y70kl21cc8q` (`FUEL_ID`),
-  KEY `FKfgbwxwqrk4cooxx1tw40ha374` (`TRANSMISSION_ID`),
-  CONSTRAINT `FK4mv4ncm53ja4qtqmfqspxv7l` FOREIGN KEY (`COLOR_ID`) REFERENCES `color` (`id`),
-  CONSTRAINT `FK5um4kwk1ms8mhhrdk5diql2fi` FOREIGN KEY (`MARK_ID`) REFERENCES `marks` (`id`),
-  CONSTRAINT `FKfgbwxwqrk4cooxx1tw40ha374` FOREIGN KEY (`TRANSMISSION_ID`) REFERENCES `transmission` (`id`),
-  CONSTRAINT `FKg1qo6b481ypqbwglkuxdw6cmf` FOREIGN KEY (`GENERATION_ID`) REFERENCES `generations` (`id`),
-  CONSTRAINT `FKrwe6b2vd08hb4gnst223xsna4` FOREIGN KEY (`MODEL_ID`) REFERENCES `models` (`id`),
-  CONSTRAINT `FKsken61sdlwxjdxbnr39d81ysu` FOREIGN KEY (`ENGINE_CAPACITY_ID`) REFERENCES `engine_capacity` (`id`),
-  CONSTRAINT `FKsl0wrmmbnt8rd0y70kl21cc8q` FOREIGN KEY (`FUEL_ID`) REFERENCES `fuel` (`id`),
-  CONSTRAINT `FKst5wx1ahrn6fuvmypf09cjcfi` FOREIGN KEY (`CARCASE_ID`) REFERENCES `carcases` (`ID`),
-  CONSTRAINT `FKtrjh2q83c5gmf4kgphpvfwpph` FOREIGN KEY (`DRIVE_UNIT_ID`) REFERENCES `drive_unit` (`id`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,9 +190,7 @@ CREATE TABLE `generations` (
   `NAME` varchar(45) NOT NULL,
   `PERIOD` varchar(45) DEFAULT NULL,
   `MODEL_ID` bigint(20) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FKg9wutt785gq16ygypbxiroiq9` (`MODEL_ID`),
-  CONSTRAINT `FKg9wutt785gq16ygypbxiroiq9` FOREIGN KEY (`MODEL_ID`) REFERENCES `models` (`id`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -242,7 +222,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (7),(7);
+INSERT INTO `hibernate_sequence` VALUES (9),(9);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,9 +262,7 @@ CREATE TABLE `models` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
   `MARK_ID` bigint(20) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FKa3bx5wx21caor8ab44c5xt9ff` (`MARK_ID`),
-  CONSTRAINT `FKa3bx5wx21caor8ab44c5xt9ff` FOREIGN KEY (`MARK_ID`) REFERENCES `marks` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1236 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -348,7 +326,7 @@ CREATE TABLE `persistent_logins` (
 
 LOCK TABLES `persistent_logins` WRITE;
 /*!40000 ALTER TABLE `persistent_logins` DISABLE KEYS */;
-INSERT INTO `persistent_logins` VALUES ('dbuser1','7hBWCr3Ln5/jJCSyDLLfBg==','zCCL6LS7dRAVhXOJGNJh+Q==','2019-04-11 09:05:47');
+INSERT INTO `persistent_logins` VALUES ('dbuser1','7hBWCr3Ln5/jJCSyDLLfBg==','zCCL6LS7dRAVhXOJGNJh+Q==','2019-04-11 04:05:47');
 /*!40000 ALTER TABLE `persistent_logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +350,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (2,'ROLE_USER'),(4,'ROLE_USER'),(6,'ROLE_USER');
+INSERT INTO `role` VALUES (2,'ROLE_USER'),(4,'ROLE_USER'),(6,'ROLE_USER'),(8,'ROLE_USER');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -424,7 +402,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'dilshod.mizrobov@mail.ru','Dilshod','Mizrobov','$2a$10$IkhgzCMnJR8ujvxDGYhe.eG583kqx3bnxElBPrBwCr6Vh1YZvVinm'),(3,'mr.mizrobov@mail.ru','Dilshod','Mizrobov','$2a$10$qtlR.NQR4fIKZIODcDrtc.pcB5FXw62Uwjo00Nt5x28OxYlXkC0ca'),(5,'d.mizrobov@mail.ru','Dilovar','Mizrobov','$2a$10$3k2xHW7sbwcdVfD9HELemeHA5oKjXAMCmWCFeKiLhY3lIyHVmChMy');
+INSERT INTO `user` VALUES (1,'dilshod.mizrobov@mail.ru','Dilshod','Mizrobov','$2a$10$IkhgzCMnJR8ujvxDGYhe.eG583kqx3bnxElBPrBwCr6Vh1YZvVinm'),(3,'mr.mizrobov@mail.ru','Dilshod','Mizrobov','$2a$10$qtlR.NQR4fIKZIODcDrtc.pcB5FXw62Uwjo00Nt5x28OxYlXkC0ca'),(5,'d.mizrobov@mail.ru','Dilovar','Mizrobov','$2a$10$3k2xHW7sbwcdVfD9HELemeHA5oKjXAMCmWCFeKiLhY3lIyHVmChMy'),(7,'dilshod.mizrobov1994@gmail.com','Dilshod','Mizrobov','$2a$10$NmXOfMpvEVC.Qjyn7PyZbOPocpp/FrSIMHENSedNZI79.b.UeyGpi');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,7 +429,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,2),(3,4),(5,6);
+INSERT INTO `users_roles` VALUES (1,2),(3,4),(5,6),(7,8);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -464,4 +442,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-04  0:04:45
+-- Dump completed on 2019-09-04 17:11:22
